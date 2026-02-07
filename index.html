@@ -1,447 +1,405 @@
-import React, { useState } from 'react';
-import { Atom, Globe, Clock, Infinity, Info, ArrowRight, Brain, Sparkles, ChevronRight, Users, Printer, X } from 'lucide-react';
-
-const BuddhismCosmology = () => {
-  const [activeTab, setActiveTab] = useState('space');
-  const [isPrintMode, setIsPrintMode] = useState(false);
-
-  const tabs = [
-    { id: 'space', label: '空間の広がり', icon: Globe },
-    { id: 'time', label: '時間の長さ', icon: Clock },
-    { id: 'number', label: '数の巨大さ', icon: Infinity },
-    { id: 'cycle', label: '生成と消滅', icon: Sparkles },
-    { id: 'worlds', label: '4つの大陸', icon: Users },
-  ];
-
-  // コンテンツのレンダリング関数（印刷モードでもタブモードでも再利用）
-  const renderContent = (sectionId) => {
-    switch (sectionId) {
-      case 'space':
-        return (
-          <div className="animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6 print:mb-2">
-              <Globe className="text-indigo-600" size={32} />
-              <h2 className="text-2xl font-bold text-slate-800">空間：三千大千世界 ≒ 銀河団？</h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 print:gap-4 print:block">
-              {/* Buddhism Side */}
-              <div className="bg-orange-50 p-6 rounded-xl border border-orange-100 print:mb-4 print:break-inside-avoid">
-                <h3 className="text-xl font-bold text-orange-800 mb-4 flex items-center gap-2">
-                  <span className="bg-orange-200 text-orange-800 px-2 py-1 rounded text-sm print:border print:border-orange-800">仏教</span>
-                  三千大千世界 (Sanzen Daisen Sekai)
-                </h3>
-                <div className="space-y-4">
-                  <div className="bg-white/60 p-3 rounded">
-                    <p className="font-bold text-sm text-orange-900 mb-1">基本単位：須弥山世界</p>
-                    <p className="text-sm text-slate-700">太陽と月、地球を含む1つの世界（太陽系に相当）。</p>
-                  </div>
-                  <div className="flex justify-center items-center gap-2 text-orange-300 print:hidden">
-                    <ChevronRight /><span className="text-sm">×1000</span><ChevronRight />
-                  </div>
-                  <div className="bg-white/60 p-3 rounded">
-                    <p className="font-bold text-sm text-orange-900 mb-1">小千世界</p>
-                    <p className="text-sm text-slate-700">須弥山世界が1,000集まったもの。</p>
-                  </div>
-                  <div className="flex justify-center items-center gap-2 text-orange-300 print:hidden">
-                    <ChevronRight /><span className="text-sm">×1000</span><ChevronRight />
-                  </div>
-                  <div className="bg-orange-100 p-4 rounded border-2 border-orange-200">
-                    <p className="font-bold text-lg text-orange-900 mb-1">三千大千世界</p>
-                    <p className="text-sm text-slate-700">
-                      小千世界がさらに1,000×1,000集まった広大な領域。<br/>
-                      合計 <strong>10億個</strong> の太陽系を含む規模。
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Physics Side */}
-              <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-100 print:break-inside-avoid">
-                <h3 className="text-xl font-bold text-indigo-800 mb-4 flex items-center gap-2">
-                  <span className="bg-indigo-200 text-indigo-800 px-2 py-1 rounded text-sm print:border print:border-indigo-800">物理学</span>
-                  銀河・銀河団 (Galaxy / Cluster)
-                </h3>
-                <div className="space-y-4">
-                  <div className="bg-white/60 p-3 rounded">
-                    <p className="font-bold text-sm text-indigo-900 mb-1">太陽系 (Solar System)</p>
-                    <p className="text-sm text-slate-700">恒星（太陽）とその惑星群。</p>
-                  </div>
-                  <div className="flex justify-center items-center gap-2 text-indigo-300 print:hidden">
-                    <ChevronRight /><span className="text-sm">集積</span><ChevronRight />
-                  </div>
-                  <div className="bg-indigo-100 p-4 rounded border-2 border-indigo-200">
-                    <p className="font-bold text-lg text-indigo-900 mb-1">銀河系 (Milky Way)</p>
-                    <p className="text-sm text-slate-700">
-                      約2000億〜4000億個の恒星（太陽）が集まる天体。<br/>
-                      <span className="text-indigo-600 font-bold">合致点：</span> 
-                      1つの銀河が含む恒星の数（数千億）は、三千大千世界（10億個）のオーダーと「広大な集合体」という概念で非常に近い。
-                    </p>
-                  </div>
-                  <div className="mt-4 p-3 bg-indigo-900 text-indigo-50 rounded text-sm print:text-black print:bg-slate-100 print:border">
-                    <strong>比較結論:</strong><br/>
-                    古代に「世界は一つではなく、10億個集まってさらに大きな世界を作る」と直観していた点は、現代の「太陽系→銀河→銀河団→大規模構造」という階層構造と驚くほど一致しています。
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'time':
-        return (
-          <div className="animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6 print:mb-2">
-              <Clock className="text-indigo-600" size={32} />
-              <h2 className="text-2xl font-bold text-slate-800">時間：劫（Kalpa）と宇宙年齢</h2>
-            </div>
-
-            <div className="mb-8 print:mb-4 print:break-inside-avoid">
-              <p className="text-slate-600 mb-4">
-                多くの古代宗教が世界創世を数千年前と説く中、仏教だけが現代科学に匹敵する「億年単位」のタイムスケールを持っていました。
-              </p>
-              
-              <div className="relative pt-8 pb-4 print:pt-4">
-                <div className="h-4 bg-slate-200 rounded-full w-full overflow-hidden flex print:border print:border-slate-400">
-                  <div className="w-1/4 bg-orange-400 print:bg-slate-600 flex items-center justify-center text-xs text-white font-bold">1劫</div>
-                  <div className="w-3/4 bg-indigo-500 print:bg-slate-300 flex items-center justify-center text-xs text-white font-bold">宇宙の年齢</div>
-                </div>
-                
-                <div className="flex justify-between text-sm mt-2 text-slate-500">
-                  <span>0年</span>
-                  <span className="text-orange-600 font-bold">約43億年？(1劫の一説)</span>
-                  <span className="text-indigo-600 font-bold">138億年 (宇宙年齢)</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 print:block">
-              <div className="bg-white border border-slate-200 p-5 rounded-lg shadow-sm print:mb-4 print:break-inside-avoid">
-                <h4 className="font-bold text-lg mb-2 text-orange-700">仏教：盤石劫（ばんじゃくこう）の例え</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  「40里四方の巨大な岩を、天女が100年に一度、羽衣でサッと撫でる。その岩が摩耗して消滅しても、まだ1劫は終わらない」<br/>
-                  <br/>
-                  この途方もない比喩を計算すると、一説には<strong>約43億2000万年</strong>になると言われます。これは地球の年齢（46億年）や太陽系の寿命と不気味なほど近い数字です。
-                </p>
-              </div>
-
-              <div className="bg-white border border-slate-200 p-5 rounded-lg shadow-sm print:break-inside-avoid">
-                <h4 className="font-bold text-lg mb-2 text-indigo-700">物理学：ディープ・タイム</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  現代科学では、地球誕生から約46億年、宇宙誕生から約138億年と計算されています。<br/>
-                  <br/>
-                  キリスト教的西洋世界観が19世紀まで「数千年の歴史」を信じていたのに対し、仏教は2500年前から「星や世界が生まれ変わるほどの長大な時間」を前提としていました。
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'number':
-        return (
-          <div className="animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6 print:mb-2">
-              <Infinity className="text-indigo-600" size={32} />
-              <h2 className="text-2xl font-bold text-slate-800">数：恒河沙と原子の数</h2>
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center gap-8 bg-slate-50 p-6 rounded-xl print:block print:bg-white print:border print:border-slate-300 print:break-inside-avoid">
-              <div className="flex-1 text-center md:text-left print:mb-4">
-                <h3 className="text-4xl font-black text-slate-800 mb-2">10<sup className="text-2xl">52</sup></h3>
-                <p className="text-orange-600 font-bold mb-4">恒河沙 (Gōgasha)</p>
-                <p className="text-sm text-slate-600">
-                  ガンジス川の砂の数、という意味。仏教で説かれる「無量」の数を表す単位の一つ。
-                  現代数学的には $10^{52}$ とされることが多い。
-                </p>
-              </div>
-              
-              <div className="hidden md:block w-px h-32 bg-slate-300 print:hidden"></div>
-              <div className="hidden print:block border-b border-slate-300 my-4"></div>
-
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-4xl font-black text-slate-800 mb-2">10<sup className="text-2xl">80</sup></h3>
-                <p className="text-indigo-600 font-bold mb-4">観測可能な宇宙の原子数</p>
-                <p className="text-sm text-slate-600">
-                  現在の宇宙物理学が推定する、観測可能な宇宙にある全原子の数（エディントン数）。
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 print:break-inside-avoid">
-              <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                <Brain size={20} />
-                どこがすごいの？
-              </h4>
-              <ul className="list-disc list-inside space-y-2 text-slate-700 bg-white p-4 rounded-lg border border-slate-200 print:border-none print:p-0">
-                <li><strong>日常を超えたスケール感覚:</strong> 古代の文明の多くは「万」や「億」で数が止まっていましたが、華厳経などの経典では「阿僧祇（$10^{104}$）」や「不可説不可説転（$10^{37218383881977644441306597687849648128}$）」など、現代数学や物理学ですら扱わないレベルの巨大数を扱っています。</li>
-                <li><strong>無限の多重構造:</strong> 「一微塵の中に全世界が含まれる」という華厳経の記述は、現代のフラクタル構造や、ホログラフィック宇宙論（情報は表面積に保存される）を彷彿とさせます。</li>
-              </ul>
-            </div>
-          </div>
-        );
-
-      case 'cycle':
-        return (
-          <div className="animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6 print:mb-2">
-              <Sparkles className="text-indigo-600" size={32} />
-              <h2 className="text-2xl font-bold text-slate-800">サイクル：成住壊空とビッグバン</h2>
-            </div>
-
-            <p className="mb-6 text-slate-600">
-              宇宙は一度作られて終わりではなく、生成と消滅を永遠に繰り返すという考え方です。
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 print:grid-cols-2 print:break-inside-avoid">
-              {[
-                { title: '成 (Jō)', sub: '成立', phys: 'ビッグバン・インフレーション', color: 'bg-green-100 border-green-200 text-green-800' },
-                { title: '住 (Jū)', sub: '存続', phys: '星形成・銀河の安定期（現在）', color: 'bg-blue-100 border-blue-200 text-blue-800' },
-                { title: '壊 (E)', sub: '破壊', phys: 'ビッグクランチ / 熱的死', color: 'bg-red-100 border-red-200 text-red-800' },
-                { title: '空 (Kū)', sub: '無', phys: '量子真空 / 特異点', color: 'bg-purple-100 border-purple-200 text-purple-800' },
-              ].map((item, idx) => (
-                <div key={idx} className={`${item.color} border p-4 rounded-xl flex flex-col justify-between h-32 print:border-slate-300 print:bg-white`}>
-                  <div>
-                    <h3 className="text-xl font-bold">{item.title}</h3>
-                    <p className="text-xs opacity-75">{item.sub}</p>
-                  </div>
-                  <p className="text-sm font-semibold bg-white/50 p-1 rounded text-center print:bg-slate-100">
-                    {item.phys}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-slate-800 text-slate-200 p-6 rounded-xl print:bg-white print:text-black print:border print:border-slate-300 print:break-inside-avoid">
-              <h3 className="text-lg font-bold text-white mb-2 print:text-black">振動宇宙論（サイクリック宇宙論）との一致</h3>
-              <p className="text-sm leading-relaxed opacity-90 print:opacity-100">
-                現代物理学の一部（ペンローズのCCC理論など）では、宇宙はビッグバンで始まり、遠い未来に消滅（または次のビッグバンへ移行）し、それを繰り返していると仮説立てられています。<br/><br/>
-                仏教の「成住壊空」は、直線的な時間（始まりと終わりがある）ではなく、<strong>円環的な時間（終わりは次の始まり）</strong>を説いており、この点が最新の宇宙モデルと哲学的に共鳴しています。
-              </p>
-            </div>
-          </div>
-        );
-
-      case 'worlds':
-        return (
-          <div className="animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6 print:mb-2">
-              <Users className="text-indigo-600" size={32} />
-              <h2 className="text-2xl font-bold text-slate-800">四大洲：4つの人間界</h2>
-            </div>
-
-            <p className="mb-6 text-slate-600 print:mb-4">
-              仏教の宇宙観では、世界の中心「須弥山（しゅみせん）」の東西南北の海に4つの大陸があり、それぞれに異なる特徴を持つ人類が住んでいるとされます。<br/>
-              SF的な「異星文明」や「パラレルワールド」のような設定が、古代インドですでに描かれていました。
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 print:grid-cols-2 print:gap-4">
-              {/* South */}
-              <div className="bg-white border-2 border-indigo-100 p-5 rounded-xl shadow-sm relative overflow-hidden print:border-slate-300 print:break-inside-avoid">
-                <div className="absolute top-0 right-0 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-bl-lg text-xs font-bold">我々の世界</div>
-                <h3 className="text-lg font-bold text-slate-800 mb-1">南閻浮提 (なんえんぶだい)</h3>
-                <p className="text-xs text-slate-500 mb-3">Jambudvipa (South)</p>
-                
-                <ul className="space-y-2 text-sm text-slate-700">
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">地形</span>
-                    <span>逆三角形 (台形)</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">寿命</span>
-                    <span className="font-semibold text-indigo-700">不定 (10〜8万歳)</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">特徴</span>
-                    <span>苦楽が混在 / 欲望が強い</span>
-                  </li>
-                </ul>
-                <div className="mt-3 bg-slate-50 p-2 rounded text-xs text-slate-600">
-                  <strong>解説:</strong> 現在の地球が含まれる世界。寿命や幸福度が変動する最も不安定な場所ですが、苦しみがあるため「悟りを開こうとする意欲」が生まれる唯一の世界とされます。
-                </div>
-              </div>
-
-              {/* North */}
-              <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm relative overflow-hidden print:break-inside-avoid">
-                <div className="absolute top-0 right-0 bg-slate-100 text-slate-600 px-3 py-1 rounded-bl-lg text-xs font-bold">ユートピア</div>
-                <h3 className="text-lg font-bold text-slate-800 mb-1">北倶盧洲 (ほっくるしゅう)</h3>
-                <p className="text-xs text-slate-500 mb-3">Uttarakuru (North)</p>
-                
-                <ul className="space-y-2 text-sm text-slate-700">
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">地形</span>
-                    <span>正方形</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">寿命</span>
-                    <span className="font-semibold text-green-700">定命 1000歳</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">特徴</span>
-                    <span>私有財産なし / 労働なし</span>
-                  </li>
-                </ul>
-                <div className="mt-3 bg-slate-50 p-2 rounded text-xs text-slate-600">
-                  <strong>解説:</strong> 常に幸福な共産主義的理想郷。しかし、苦しみがなく仏教を求める心も生まれないため、ある意味では「悟りから最も遠い世界」とも言われます。
-                </div>
-              </div>
-
-              {/* East */}
-              <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm print:break-inside-avoid">
-                <h3 className="text-lg font-bold text-slate-800 mb-1">東勝身洲 (とうしょうしんしゅう)</h3>
-                <p className="text-xs text-slate-500 mb-3">Purvavideha (East)</p>
-                
-                <ul className="space-y-2 text-sm text-slate-700">
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">地形</span>
-                    <span>半月形</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">寿命</span>
-                    <span>定命 250歳</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">特徴</span>
-                    <span>身長が高く美しい</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* West */}
-              <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm print:break-inside-avoid">
-                <h3 className="text-lg font-bold text-slate-800 mb-1">西牛貨洲 (さいごけしゅう)</h3>
-                <p className="text-xs text-slate-500 mb-3">Aparagodaniya (West)</p>
-                
-                <ul className="space-y-2 text-sm text-slate-700">
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">地形</span>
-                    <span>円形</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">寿命</span>
-                    <span>定命 500歳</span>
-                  </li>
-                  <li className="flex justify-between border-b border-slate-100 pb-1">
-                    <span className="text-slate-500">特徴</span>
-                    <span>交易が盛ん (牛を通貨とする)</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        );
-      
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className={`min-h-screen bg-slate-50 text-slate-800 font-sans p-4 md:p-8 ${isPrintMode ? 'print-mode' : ''}`}>
-      <div className={`mx-auto ${isPrintMode ? 'max-w-4xl bg-white' : 'max-w-5xl'}`}>
-        
-        {/* Print Toggle Button (Visible on screen only) */}
-        <div className="flex justify-end mb-4 print:hidden">
-          <button
-            onClick={() => setIsPrintMode(!isPrintMode)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all shadow-sm ${
-              isPrintMode 
-              ? 'bg-slate-700 text-white hover:bg-slate-800' 
-              : 'bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50'
-            }`}
-          >
-            {isPrintMode ? <X size={18}/> : <Printer size={18}/>}
-            {isPrintMode ? '通常表示に戻る' : 'A4印刷モードに切替'}
-          </button>
-        </div>
-
-        {/* Header */}
-        <header className="mb-8 text-center print:mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-3 pt-4">
-            仏教宇宙観 vs 現代宇宙物理学
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto print:text-sm">
-            古代インドの瞑想から生まれた直観的宇宙と、現代科学が観測した実証的宇宙。
-            その驚くべき「合致点」と「スケール感」を比較図解します。
-          </p>
-        </header>
-
-        {/* Tab Navigation (Hidden in Print Mode) */}
-        {!isPrintMode && (
-          <div className="flex flex-wrap justify-center gap-2 mb-8 print:hidden">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-full transition-all duration-300 ${
-                    activeTab === tab.id
-                      ? 'bg-indigo-600 text-white shadow-lg scale-105'
-                      : 'bg-white text-slate-600 hover:bg-indigo-50 border border-slate-200'
-                  }`}
-                >
-                  <Icon size={18} />
-                  <span className="font-bold">{tab.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Main Content Area */}
-        <div className={`bg-white rounded-2xl ${!isPrintMode ? 'shadow-xl border border-slate-100' : ''}`}>
-          
-          {isPrintMode ? (
-            // Print Mode: Render ALL sections vertically
-            <div className="space-y-8 p-8 print:p-0 print:space-y-6">
-              {tabs.map((tab) => (
-                <div key={tab.id} className="print:break-inside-avoid border-b border-slate-200 pb-8 mb-8 last:border-0">
-                  {renderContent(tab.id)}
-                </div>
-              ))}
-            </div>
-          ) : (
-            // Interactive Mode: Render ONLY active tab
-            <div className="p-6 md:p-10 animate-fadeIn">
-              {renderContent(activeTab)}
-            </div>
-          )}
-
-        </div>
-
-        {/* Footer removed as requested */}
-
-      </div>
-
-      {/* CSS for printing adjustments */}
-      <style>{`
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仏教宇宙観 vs 現代宇宙物理学 - 比較図解ガイド</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
         @media print {
-          body {
-            background: white;
-            color: black;
-          }
-          .print\\:hidden {
-            display: none !important;
-          }
-          .print\\:block {
-            display: block !important;
-          }
-          .print\\:text-black {
-            color: black !important;
-          }
-          .print\\:bg-white {
-            background-color: white !important;
-          }
-          .print\\:border {
-            border: 1px solid #ccc !important;
-          }
-          .print\\:break-inside-avoid {
-            break-inside: avoid;
-          }
+            body { 
+                background: white; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            .no-print { display: none !important; }
+            .break-inside-avoid { break-inside: avoid; page-break-inside: avoid; }
         }
-      `}</style>
-    </div>
-  );
-};
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <div id="root"></div>
 
-export default BuddhismCosmology;
+    <script type="text/babel">
+        // --- アイコン (Lucide) ---
+        const IconGlobe = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        );
+        const IconClock = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        );
+        const IconInfinity = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
+        );
+        const IconSparkles = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M9 3v4"/><path d="M3 9h4"/><path d="M3 5h4"/></svg>
+        );
+        const IconUsers = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        );
+        const IconChevronRight = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="9 18 15 12 9 6"/></svg>
+        );
+        const IconBrain = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+        );
+
+        // --- メインコンポーネント ---
+        const BuddhismCosmology = () => {
+            return (
+                <div className="min-h-screen bg-white text-slate-800 font-sans p-6 md:p-8 max-w-5xl mx-auto print:p-0">
+                    
+                    {/* Header */}
+                    <header className="mb-12 text-center border-b-2 border-indigo-100 pb-8 print:mb-6 print:pb-4">
+                        <h1 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-3 pt-4">
+                            仏教宇宙観 vs 現代宇宙物理学
+                        </h1>
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto print:text-sm">
+                            古代インドの瞑想から生まれた直観的宇宙と、現代科学が観測した実証的宇宙。
+                            その驚くべき「合致点」と「スケール感」を比較図解します。
+                        </p>
+                    </header>
+
+                    {/* 1. SPACE SECTION */}
+                    <section className="mb-16 break-inside-avoid print:mb-8">
+                        <div className="flex items-center gap-3 mb-6 print:mb-2">
+                            <div className="bg-indigo-600 text-white p-2 rounded-lg print:p-1">
+                                <IconGlobe size={28} />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800">1. 空間：三千大千世界 ≒ 銀河団</h2>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8 print:gap-4 print:block">
+                            {/* Buddhism Side */}
+                            <div className="bg-orange-50 p-6 rounded-xl border border-orange-100 print:mb-4">
+                                <h3 className="text-xl font-bold text-orange-800 mb-4 flex items-center gap-2">
+                                    <span className="bg-orange-200 text-orange-800 px-2 py-1 rounded text-sm border border-orange-300">仏教</span>
+                                    三千大千世界
+                                </h3>
+                                <div className="space-y-4">
+                                    <div className="bg-white/60 p-3 rounded">
+                                        <p className="font-bold text-sm text-orange-900 mb-1">基本単位：須弥山世界</p>
+                                        <p className="text-sm text-slate-700">太陽と月、地球を含む1つの世界（太陽系に相当）。</p>
+                                    </div>
+                                    <div className="flex justify-center items-center gap-2 text-orange-300 print:hidden">
+                                        <IconChevronRight /><span className="text-sm">×1000</span><IconChevronRight />
+                                    </div>
+                                    <div className="bg-white/60 p-3 rounded">
+                                        <p className="font-bold text-sm text-orange-900 mb-1">小千世界</p>
+                                        <p className="text-sm text-slate-700">須弥山世界が1,000集まったもの。</p>
+                                    </div>
+                                    <div className="flex justify-center items-center gap-2 text-orange-300 print:hidden">
+                                        <IconChevronRight /><span className="text-sm">×1000</span><IconChevronRight />
+                                    </div>
+                                    <div className="bg-orange-100 p-4 rounded border-2 border-orange-200">
+                                        <p className="font-bold text-lg text-orange-900 mb-1">三千大千世界</p>
+                                        <p className="text-sm text-slate-700">
+                                            小千世界がさらに1,000×1,000集まった広大な領域。<br/>
+                                            合計 <strong>10億個</strong> の太陽系を含む規模。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Physics Side */}
+                            <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                                <h3 className="text-xl font-bold text-indigo-800 mb-4 flex items-center gap-2">
+                                    <span className="bg-indigo-200 text-indigo-800 px-2 py-1 rounded text-sm border border-indigo-300">物理学</span>
+                                    銀河・銀河団
+                                </h3>
+                                <div className="space-y-4">
+                                    <div className="bg-white/60 p-3 rounded">
+                                        <p className="font-bold text-sm text-indigo-900 mb-1">太陽系 (Solar System)</p>
+                                        <p className="text-sm text-slate-700">恒星（太陽）とその惑星群。</p>
+                                    </div>
+                                    <div className="flex justify-center items-center gap-2 text-indigo-300 print:hidden">
+                                        <IconChevronRight /><span className="text-sm">集積</span><IconChevronRight />
+                                    </div>
+                                    <div className="bg-indigo-100 p-4 rounded border-2 border-indigo-200">
+                                        <p className="font-bold text-lg text-indigo-900 mb-1">銀河系 (Milky Way)</p>
+                                        <p className="text-sm text-slate-700">
+                                            約2000億〜4000億個の恒星（太陽）が集まる天体。<br/>
+                                            <span className="text-indigo-600 font-bold">合致点：</span> 
+                                            1つの銀河が含む恒星の数（数千億）は、三千大千世界（10億個）のオーダーと「広大な集合体」という概念で非常に近い。
+                                        </p>
+                                    </div>
+                                    <div className="mt-4 p-3 bg-indigo-900 text-indigo-50 rounded text-sm print:bg-slate-100 print:text-black print:border print:border-slate-300">
+                                        <strong>比較結論:</strong><br/>
+                                        古代に「世界は一つではなく、10億個集まってさらに大きな世界を作る」と直観していた点は、現代の「太陽系→銀河→銀河団→大規模構造」という階層構造と驚くほど一致しています。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div className="border-b border-slate-200 mb-8 print:hidden"></div>
+
+                    {/* 2. TIME SECTION */}
+                    <section className="mb-16 break-inside-avoid print:mb-8">
+                        <div className="flex items-center gap-3 mb-6 print:mb-2">
+                            <div className="bg-indigo-600 text-white p-2 rounded-lg print:p-1">
+                                <IconClock size={28} />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800">2. 時間：劫（Kalpa）と宇宙年齢</h2>
+                        </div>
+
+                        <div className="mb-8 print:mb-4">
+                            <p className="text-slate-600 mb-4">
+                                多くの古代宗教が世界創世を数千年前と説く中、仏教だけが現代科学に匹敵する「億年単位」のタイムスケールを持っていました。
+                            </p>
+                            
+                            <div className="relative pt-8 pb-4 print:pt-4">
+                                <div className="h-6 bg-slate-200 rounded-full w-full overflow-hidden flex border border-slate-300">
+                                    <div className="w-1/4 bg-orange-400 print:bg-slate-500 flex items-center justify-center text-xs text-white font-bold">1劫</div>
+                                    <div className="w-3/4 bg-indigo-500 print:bg-slate-300 flex items-center justify-center text-xs text-white font-bold">宇宙の年齢</div>
+                                </div>
+                                
+                                <div className="flex justify-between text-sm mt-2 text-slate-500">
+                                    <span>0年</span>
+                                    <span className="text-orange-600 font-bold">約43億年？(1劫の一説)</span>
+                                    <span className="text-indigo-600 font-bold">138億年 (宇宙年齢)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6 print:block">
+                            <div className="bg-white border border-slate-200 p-5 rounded-lg shadow-sm print:mb-4">
+                                <h4 className="font-bold text-lg mb-2 text-orange-700">仏教：盤石劫（ばんじゃくこう）の例え</h4>
+                                <p className="text-sm text-slate-600 leading-relaxed">
+                                    「40里四方の巨大な岩を、天女が100年に一度、羽衣でサッと撫でる。その岩が摩耗して消滅しても、まだ1劫は終わらない」<br/>
+                                    <br/>
+                                    この途方もない比喩を計算すると、一説には<strong>約43億2000万年</strong>になると言われます。これは地球の年齢（46億年）や太陽系の寿命と不気味なほど近い数字です。
+                                </p>
+                            </div>
+
+                            <div className="bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
+                                <h4 className="font-bold text-lg mb-2 text-indigo-700">物理学：ディープ・タイム</h4>
+                                <p className="text-sm text-slate-600 leading-relaxed">
+                                    現代科学では、地球誕生から約46億年、宇宙誕生から約138億年と計算されています。<br/>
+                                    <br/>
+                                    キリスト教的西洋世界観が19世紀まで「数千年の歴史」を信じていたのに対し、仏教は2500年前から「星や世界が生まれ変わるほどの長大な時間」を前提としていました。
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div className="border-b border-slate-200 mb-8 print:hidden"></div>
+
+                    {/* 3. NUMBER SECTION */}
+                    <section className="mb-16 break-inside-avoid print:mb-8">
+                        <div className="flex items-center gap-3 mb-6 print:mb-2">
+                            <div className="bg-indigo-600 text-white p-2 rounded-lg print:p-1">
+                                <IconInfinity size={28} />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800">3. 数：恒河沙と原子の数</h2>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row items-center gap-8 bg-slate-50 p-6 rounded-xl border border-slate-200 print:block print:bg-white">
+                            <div className="flex-1 text-center md:text-left print:mb-4">
+                                <h3 className="text-4xl font-black text-slate-800 mb-2">10<sup className="text-2xl">52</sup></h3>
+                                <p className="text-orange-600 font-bold mb-4">恒河沙 (Gōgasha)</p>
+                                <p className="text-sm text-slate-600">
+                                    ガンジス川の砂の数、という意味。仏教で説かれる「無量」の数を表す単位の一つ。
+                                    現代数学的には 10の52乗 とされることが多い。
+                                </p>
+                            </div>
+                            
+                            <div className="hidden md:block w-px h-32 bg-slate-300 print:hidden"></div>
+                            <div className="hidden print:block border-b border-slate-300 my-4"></div>
+
+                            <div className="flex-1 text-center md:text-left">
+                                <h3 className="text-4xl font-black text-slate-800 mb-2">10<sup className="text-2xl">80</sup></h3>
+                                <p className="text-indigo-600 font-bold mb-4">観測可能な宇宙の原子数</p>
+                                <p className="text-sm text-slate-600">
+                                    現在の宇宙物理学が推定する、観測可能な宇宙にある全原子の数（エディントン数）。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="mt-6">
+                            <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                <IconBrain size={20} />
+                                どこがすごいの？
+                            </h4>
+                            <ul className="list-disc list-inside space-y-2 text-slate-700 bg-white p-4 rounded-lg border border-slate-200 print:border-none print:p-0">
+                                <li><strong>日常を超えたスケール感覚:</strong> 古代の文明の多くは「万」や「億」で数が止まっていましたが、華厳経などの経典では「阿僧祇（10の104乗）」や「不可説不可説転」など、現代数学や物理学ですら扱わないレベルの巨大数を扱っています。</li>
+                                <li><strong>無限の多重構造:</strong> 「一微塵の中に全世界が含まれる」という華厳経の記述は、現代のフラクタル構造や、ホログラフィック宇宙論（情報は表面積に保存される）を彷彿とさせます。</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <div className="border-b border-slate-200 mb-8 print:hidden"></div>
+
+                    {/* 4. CYCLE SECTION */}
+                    <section className="mb-16 break-inside-avoid print:mb-8">
+                        <div className="flex items-center gap-3 mb-6 print:mb-2">
+                            <div className="bg-indigo-600 text-white p-2 rounded-lg print:p-1">
+                                <IconSparkles size={28} />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800">4. サイクル：成住壊空とビッグバン</h2>
+                        </div>
+
+                        <p className="mb-6 text-slate-600">
+                            宇宙は一度作られて終わりではなく、生成と消滅を永遠に繰り返すという考え方です。
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 print:grid-cols-2">
+                            {[
+                                { title: '成 (Jō)', sub: '成立', phys: 'ビッグバン・インフレーション', color: 'bg-green-100 border-green-200 text-green-800' },
+                                { title: '住 (Jū)', sub: '存続', phys: '星形成・銀河の安定期（現在）', color: 'bg-blue-100 border-blue-200 text-blue-800' },
+                                { title: '壊 (E)', sub: '破壊', phys: 'ビッグクランチ / 熱的死', color: 'bg-red-100 border-red-200 text-red-800' },
+                                { title: '空 (Kū)', sub: '無', phys: '量子真空 / 特異点', color: 'bg-purple-100 border-purple-200 text-purple-800' },
+                            ].map((item, idx) => (
+                                <div key={idx} className={`${item.color} border p-4 rounded-xl flex flex-col justify-between h-32 print:bg-white print:border-slate-300`}>
+                                    <div>
+                                        <h3 className="text-xl font-bold">{item.title}</h3>
+                                        <p className="text-xs opacity-75">{item.sub}</p>
+                                    </div>
+                                    <p className="text-sm font-semibold bg-white/50 p-1 rounded text-center print:bg-slate-100">
+                                        {item.phys}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="bg-slate-800 text-slate-200 p-6 rounded-xl print:bg-white print:text-black print:border print:border-slate-300">
+                            <h3 className="text-lg font-bold text-white mb-2 print:text-black">振動宇宙論（サイクリック宇宙論）との一致</h3>
+                            <p className="text-sm leading-relaxed opacity-90 print:opacity-100">
+                                現代物理学の一部（ペンローズのCCC理論など）では、宇宙はビッグバンで始まり、遠い未来に消滅（または次のビッグバンへ移行）し、それを繰り返していると仮説立てられています。<br/><br/>
+                                仏教の「成住壊空」は、直線的な時間（始まりと終わりがある）ではなく、<strong>円環的な時間（終わりは次の始まり）</strong>を説いており、この点が最新の宇宙モデルと哲学的に共鳴しています。
+                            </p>
+                        </div>
+                    </section>
+
+                    <div className="border-b border-slate-200 mb-8 print:hidden"></div>
+
+                    {/* 5. WORLDS SECTION */}
+                    <section className="mb-16 break-inside-avoid print:mb-8">
+                        <div className="flex items-center gap-3 mb-6 print:mb-2">
+                            <div className="bg-indigo-600 text-white p-2 rounded-lg print:p-1">
+                                <IconUsers size={28} />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800">5. 四大洲：4つの人間界</h2>
+                        </div>
+
+                        <p className="mb-6 text-slate-600">
+                            仏教の宇宙観では、世界の中心「須弥山（しゅみせん）」の東西南北の海に4つの大陸があり、それぞれに異なる特徴を持つ人類が住んでいるとされます。<br/>
+                            SF的な「異星文明」や「パラレルワールド」のような設定が、古代インドですでに描かれていました。
+                        </p>
+
+                        <div className="grid md:grid-cols-2 gap-6 print:grid-cols-2">
+                            {/* South */}
+                            <div className="bg-white border-2 border-indigo-100 p-5 rounded-xl shadow-sm relative overflow-hidden print:border-slate-300">
+                                <div className="absolute top-0 right-0 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-bl-lg text-xs font-bold print:border print:border-slate-300">我々の世界</div>
+                                <h3 className="text-lg font-bold text-slate-800 mb-1">南閻浮提 (なんえんぶだい)</h3>
+                                <p className="text-xs text-slate-500 mb-3">Jambudvipa (South)</p>
+                                
+                                <ul className="space-y-2 text-sm text-slate-700">
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">地形</span>
+                                        <span>逆三角形 (台形)</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">寿命</span>
+                                        <span className="font-semibold text-indigo-700">不定 (10〜8万歳)</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">特徴</span>
+                                        <span>苦楽が混在 / 欲望が強い</span>
+                                    </li>
+                                </ul>
+                                <div className="mt-3 bg-slate-50 p-2 rounded text-xs text-slate-600 print:bg-slate-100">
+                                    <strong>解説:</strong> 現在の地球が含まれる世界。寿命や幸福度が変動する最も不安定な場所ですが、苦しみがあるため「悟りを開こうとする意欲」が生まれる唯一の世界とされます。
+                                </div>
+                            </div>
+
+                            {/* North */}
+                            <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 right-0 bg-slate-100 text-slate-600 px-3 py-1 rounded-bl-lg text-xs font-bold border-l border-b border-slate-200">ユートピア</div>
+                                <h3 className="text-lg font-bold text-slate-800 mb-1">北倶盧洲 (ほっくるしゅう)</h3>
+                                <p className="text-xs text-slate-500 mb-3">Uttarakuru (North)</p>
+                                
+                                <ul className="space-y-2 text-sm text-slate-700">
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">地形</span>
+                                        <span>正方形</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">寿命</span>
+                                        <span className="font-semibold text-green-700">定命 1000歳</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">特徴</span>
+                                        <span>私有財産なし / 労働なし</span>
+                                    </li>
+                                </ul>
+                                <div className="mt-3 bg-slate-50 p-2 rounded text-xs text-slate-600 print:bg-slate-100">
+                                    <strong>解説:</strong> 常に幸福な共産主義的理想郷。しかし、苦しみがなく仏教を求める心も生まれないため、ある意味では「悟りから最も遠い世界」とも言われます。
+                                </div>
+                            </div>
+
+                            {/* East */}
+                            <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+                                <h3 className="text-lg font-bold text-slate-800 mb-1">東勝身洲 (とうしょうしんしゅう)</h3>
+                                <p className="text-xs text-slate-500 mb-3">Purvavideha (East)</p>
+                                
+                                <ul className="space-y-2 text-sm text-slate-700">
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">地形</span>
+                                        <span>半月形</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">寿命</span>
+                                        <span>定命 250歳</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">特徴</span>
+                                        <span>身長が高く美しい</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* West */}
+                            <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+                                <h3 className="text-lg font-bold text-slate-800 mb-1">西牛貨洲 (さいごけしゅう)</h3>
+                                <p className="text-xs text-slate-500 mb-3">Aparagodaniya (West)</p>
+                                
+                                <ul className="space-y-2 text-sm text-slate-700">
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">地形</span>
+                                        <span>円形</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">寿命</span>
+                                        <span>定命 500歳</span>
+                                    </li>
+                                    <li className="flex justify-between border-b border-slate-100 pb-1">
+                                        <span className="text-slate-500">特徴</span>
+                                        <span>交易が盛ん (牛を通貨とする)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* Footer */}
+                    <div className="mt-8 pt-8 border-t border-slate-200 text-center text-slate-500 text-sm print:text-xs">
+                        <p>※ これらの比較は概念的な類似性を示すものです。</p>
+                    </div>
+
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<BuddhismCosmology />);
+    </script>
+</body>
+</html>
